@@ -13,9 +13,13 @@
 }
 
 :root {
-    --primary-color: #fff;
-    --secondary-color: #000;
-    --bg-color: #f0f0f0;
+    --white-color: #fff;
+    --bg-color: #000000;
+    --primary-color: #7824f6;
+    --card-color-one: #2a235a;
+    --card-color-two: #150d2b;
+    --body-bg-shade: radial-gradient(72.04% 72.04% at 50% 3.99%, #7824F6 0%, rgba(166, 151, 255, 0) 100%);
+    --shadow-color-one: #6a0cf8;
     --transition: 0.3s ease-in-out;
     --font-family: 'Poppins', sans-serif;
 }
@@ -28,4 +32,34 @@ body {
     height: 100%;
     width: 100%;
     overflow-x: hidden;
+    font-family: var(--font-family);
+    background: var(--bg-color);
+    color: var(--white-color)
 }
+body::before {
+    content: "";
+    position: fixed;
+        top: 0;
+        bottom: 0px;
+        right: 0px;
+        background: var(--body-bg-shade);
+        filter: blur(330px);
+        border-radius: 24px;
+        max-width: 480px;
+        width: 100%;
+        height: 100%;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    max-width: 700px;
+    width: 100%;
+    border-radius: 50%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(360px);
+    background: var(--body-bg-shade);}

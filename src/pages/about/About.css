@@ -1,0 +1,67 @@
+
+
+    /* Section one */
+    .top{
+        display: flex;
+        height: 5%;
+        background-color: #706ac7;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .top .left{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 20rem;
+
+    }
+
+
+    .top .left h1{
+        color: white;
+        font-size: 3rem;
+
+    }
+    .top .left span{
+        color:orange;
+    }
+    .top .left p{
+        color: white;
+        font-size: 10px;
+    }
+
+    .top .right{
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        width: 50%;
+        overflow: hidden;
+    }
+
+    .top .right img{
+        width : 50%;
+        height: 100%;
+    }
+
+
+    /* Section Two */
+    .two{
+        display: flex;
+        /* justify-content: space-between; */
+    }
+
+    .two .left{
+
+    }
+
+    .two .left img{
+        width:100%;
+        object-fit: cover;
+    }
+
+    .two .right{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
