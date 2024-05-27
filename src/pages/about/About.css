@@ -1,11 +1,10 @@
-
-
-    /* Section one */
+/* Section one */
     .top{
         display: flex;
         height: 5%;
-        background-color: #706ac7;
+        /* background-color: #706ac7; */
         justify-content: space-between;
+            background: radial-gradient(var(--card-color-one), var(--card-color-two));
         align-items: center;
     }
 
@@ -44,24 +43,64 @@
         height: 100%;
     }
 
-
     /* Section Two */
     .two{
+        margin-top: 20px;
+        margin-bottom: 20px;
         display: flex;
-        /* justify-content: space-between; */
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-left: auto;
     }
 
     .two .left{
-
-    }
-
-    .two .left img{
         width:100%;
-        object-fit: cover;
+
     }
 
-    .two .right{
+    .two .right p{
+        text-align: justify;
+    }
+
+    /* section three */
+
+    .three{
+        margin-top: 20px;
         display: flex;
-        flex-direction: column;
         justify-content: center;
+        flex-direction: column;
+    }
+
+    .three h1{
+        text-align: center;
+        font-size: 2em;
+    }
+    
+    .three .orange{
+        color: orange;
+    }
+    
+    .three img{
+        border-radius: 25px;
+        width: 80%;
+        padding-top: 10px;
+        margin: 0 auto;
+    }
+    
+    .carddd{
+        margin: 0 auto;
+        max-width: 1500px;
+        display :flex;
+        justify-content: space-evenly;
+    }
+
+    .four h1{
+        margin-top: 20px;
+        text-align: center;
+        font-size: 2em;
+    }
+
+    .colorcard{
+        background: linear-gradient(to left, var(--card-color-one), var(--card-color-two));
     }

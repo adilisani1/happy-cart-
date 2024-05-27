@@ -1,14 +1,15 @@
 import React from 'react'
 import './home.css';
+import Hero from '../../components/hero/Hero';
 
 const Home = () => {
     return (
         <div className='shade-parent'>
             <div className='shade'>
-                HomePage
+                <Hero />
             </div>
         </div>
     )
 }
 
-export default Home
+export default Home;
