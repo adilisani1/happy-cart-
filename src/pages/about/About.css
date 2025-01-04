@@ -1,13 +1,10 @@
 /* Section one */
     .top{
-        display: flex;
-        height: 5%;
-        /* background-color: #706ac7; */
-        justify-content: space-between;
             background: radial-gradient(var(--card-color-one), var(--card-color-two));
-        align-items: center;
     }
-
+.max-w-sm {
+    max-width: 24rem; /* Tailwind's default value */
+}
     .top .left{
         display: flex;
         flex-direction: column;
@@ -103,4 +100,14 @@
 
     .colorcard{
         background: linear-gradient(to left, var(--card-color-one), var(--card-color-two));
+    }
+
+
+
+
+
+    @media(max-width: 768px) {
+         .top{
+            background: none;
+    }
     }

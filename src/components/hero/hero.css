@@ -1,5 +1,5 @@
 .hero-card {
-    background: radial-gradient(var(--card-color-one), var(--card-color-two));
+    /* background: radial-gradient(var(--card-color-one), var(--card-color-two)); */
     color: #fff;
 
     
@@ -8,7 +8,7 @@
 
 .slick-slider {
     position: relative;
-    padding-top: 20px;
+    padding-top: 10px;
 }
 
 .slick-slide {
@@ -42,4 +42,8 @@
 
 .slick-dots li {
     margin: 0 8px;
+}
+
+.slick-slide {
+    padding: 0px 1px !important;
 }

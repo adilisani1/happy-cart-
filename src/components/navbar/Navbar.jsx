@@ -1,16 +1,22 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import logoCart from '/assets/images/logo/happy-cart-logo2.png'
+import React, { useContext } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import logoCart from '/assets/images/logo/happy-cart-logo2.png';
 import { BsFillHandbagFill } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import { IoSearchOutline } from "react-icons/io5";
 
 import './navbar.css';
 import { Menu } from '../menu/Menu';
+import navLinks from '../../utils/menuLinks';
+import { CartContext } from '../../context/CartProvider/CartProvider';
 
-const Navbar = () => {
 
-    const navigate = useNavigate()
+
+const Navbar = ({ setShowLogin }) => {
+    const navigate = useNavigate();
+
+    const { cartItems } = useContext(CartContext);
+
     const handleSearch = (e) => {
         e.preventDefault();
         const searchValue = e.target.search.value;
@@ -21,20 +27,30 @@ const Navbar = () => {
     };
 
     return (
-        <header className=' h-20 py-3 md:py-4 px-4 md:px-8 lg:px-16 xl-32 2xl:px-64 shadow-sm header'>
+        <header className=' h-20 py-3 md:py-4 px-2 md:px-8 lg:px-16 xl-32 2xl:px-64 shadow-sm header'>
             <div className='flex xl:hidden items-center justify-between'>
-                {/* MOBILE */}
-                <Menu />
-                <Link to='/' className='flex items-center  gap-1'>
-                    <img className=' md:w-[43px] w-[38px]' src={logoCart} alt='happy-cart-logo' />
-                    <div className='pt-2.5'>
-                        <h4 className=' md:text-[20px] text-md font-extrabold '>happycart </h4>
-                    </div>
-                </Link>
-                <div className='flex items-center '>
-                    <div className='flex  gap-4 items-center'>
-                        <Link to="/"><span className=' md:text-[29px] text-[26px]'><BsFillPersonFill className='' /></span></Link>
-                        <Link to="/cart"><span className=' text-[23px]  md:text-2xl'><BsFillHandbagFill /></span></Link>
+                <div className='flex-1'>
+                    <Menu />
+                </div>
+                <div className='flex-1 flex justify-center'>
+                    <NavLink to='/' className='flex items-center gap-1'>
+                        <img className='md:w-[43px] w-[38px]' src={logoCart} alt='happy-cart-logo' />
+                        <div className='pt-2.5'>
+                            <h4 className='md:text-[20px] text-md font-extrabold'>happycart</h4>
+                        </div>
+                    </NavLink>
+                </div>
+                <div className='flex-1 flex justify-end items-center'>
+                    <div className='flex gap-2 items-center'>
+
+                        <NavLink to="/cart" className="relative">
+                            <span className='text-[20px] md:text-2xl'>
+                                <BsFillHandbagFill /></span>
+                            {cartItems.length > 0 && (
+                                <div className="absolute top-[-2px] right-[-3px] bg-red-500 text-white rounded-full w-2 h-2 flex items-center justify-center" />
+                            )}
+                        </NavLink>
+                        <button className='text-[15px] md:text-2xl' onClick={setShowLogin}>Sign in</button>
                     </div>
                 </div>
             </div>
@@ -50,18 +66,13 @@ const Navbar = () => {
                         </div>
                     </Link>
                     <ul className='hidden xl:flex gap-7 '>
-                        <li className=''>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li className=''>
-                            <Link to="/shop">Shop</Link>
-                        </li>
-                        <li className=''>
-                            <Link to="/about">About</Link>
-                        </li>
-                        <li className=''>
-                            <Link to="/contact">Contact</Link>
-                        </li>
+                        {navLinks.map((link, index) => (
+                            <li key={index}>
+                                <Link to={link.path} className="hover:text-primary-color">
+                                    {link.name}
+                                </Link>
+                            </li>
+                        ))}
                     </ul>
                 </div>
 
@@ -75,19 +86,22 @@ const Navbar = () => {
                             </button>
                         </form>
                         <div className='flex items-center gap-4 xl:gap-6'>
-                            <Link to="/"><span className=' md:text-[29px] text-[21px]'><BsFillPersonFill className='' /></span></Link>
-                            <Link to="/cart"><span className=' text-lg  md:text-2xl'><BsFillHandbagFill /></span></Link>
-                        </div>
+                            <Link to="/cart" className='relative'>
+                                <span className=' text-lg  md:text-2xl' >
+                                    <BsFillHandbagFill />
+                                </span>
+                                {cartItems.length > 0 && (
+                                    <div className="absolute top-[-2px] right-[-3px] bg-red-500 text-white rounded-full w-2 h-2 flex items-center justify-center" />
+                                )}
+                            </Link>
+                            <button onClick={setShowLogin}>Sign in</button>
 
+                        </div>
                     </div>
                 </div>
-
             </nav>
+        </header>
+    );
+};
 
-
-        </header >
-
-    )
-}
-
-export default Navbar
+export default Navbar;

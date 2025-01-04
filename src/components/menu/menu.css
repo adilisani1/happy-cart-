@@ -4,14 +4,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
+    width: 32px;
     cursor: pointer;
-    height: 40px;
+    height: 32px;
     transition: all 0.5s ease-in-out;
 }
 .button .burger-icon {
     position: relative;
-    width: 32px;
+    width: 30px;
     height: 2px;
     background: #fff;
     border-radius: 5px;
@@ -22,7 +22,7 @@
 .burger-icon::after {
     content: "";
     position: absolute;
-    width: 32px;
+    width: 30px;
     height: 2px;
     background: #fff;
     transition: all 0.5s ease-in-out;
