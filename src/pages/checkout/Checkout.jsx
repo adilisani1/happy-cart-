@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartProvider/CartProvider";
 
 const Checkout = () => {
-    const { cartItems } = useContext(CartContext);
+    const { cartItems, setCartItems } = useContext(CartContext);
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -21,6 +21,36 @@ const Checkout = () => {
         return cartItems
             .reduce((acc, item) => acc + parseFloat(item.price) * item.quantity, 0)
             .toFixed(2);
+    };
+
+
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (
+            !formData.firstName ||
+            !formData.lastName ||
+            !formData.email ||
+            !formData.street ||
+            !formData.phone
+        ) {
+            alert("Please fill in all fields");
+            return;
+        }
+
+        console.log("Checkout Form Submitted", formData);
+        setCartItems([]);
+        setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            street: "",
+            phone: ""
+        })
+
+
     };
 
     return (
@@ -43,7 +73,7 @@ const Checkout = () => {
                                     value={formData.firstName}
                                     onChange={handleInputChange}
                                     placeholder="Enter your first name"
-                                    className=" border border-gray-200 text-gray-300 rounded-lg px-4 py-4 outline-none bg-inherit"
+                                    className=" border ring-amber-950	 border-gray-200 text-gray-300 rounded-lg px-4 py-4 outline-none bg-inherit"
                                 />
                             </div>
                             {/* --------------  Last Name ------------- */}
@@ -142,7 +172,8 @@ const Checkout = () => {
                                             Grand Total: ${calculateTotal()}
                                         </h3>
                                         <div className="lg:col-span-3 text-center mt-8">
-                                            <button className="w-full bg-card-color-one hover:opacity-90 text-white px-6 py-3 rounded-lg font-semibold">
+                                            <button className="w-full bg-card-color-one hover:opacity-90 text-white px-6 py-3 rounded-lg font-semibold"
+                                                onClick={handleSubmit}>
                                                 Proceed to Payment
                                             </button>
                                         </div>

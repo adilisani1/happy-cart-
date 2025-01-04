@@ -22,12 +22,13 @@ function App() {
 
   return (
 
+    <>
+      {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
     <MenuProvider>
       <ProductsProvider>
         <CartProvider>
           <Navbar setShowLogin={setShowLogin} />
-        <div className="  min-h-screen">
-            {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
+            <div className="  min-h-screen">
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
@@ -43,6 +44,7 @@ function App() {
         </CartProvider>
       </ProductsProvider>
     </MenuProvider>
+    </>
 
   )
 }
