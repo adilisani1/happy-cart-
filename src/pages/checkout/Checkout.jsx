@@ -1,8 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartProvider/CartProvider";
 
 const Checkout = () => {
     const { cartItems } = useContext(CartContext);
+
+    const [formData, setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        street: "",
+        phone: ""
+    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
 
     const calculateTotal = () => {
         return cartItems
@@ -10,16 +23,15 @@ const Checkout = () => {
             .toFixed(2);
     };
 
-
     return (
         <div className="min-h-screen  text-white py-16 px-4 sm:px-8">
             <div className="max-w-7xl mx-auto">
                 <form className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* Left: Delivery Information */}
+                    {/* -----------------Delivery Information ---------------------- */}
                     <div className="lg:col-span-2 p-8 rounded-lg shadow-lg">
                         <h2 className="text-2xl font-bold mb-6">Delivery Information</h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            {/* First Name */}
+                            {/* ----------- First Name -------------- */}
                             <div className="flex flex-col">
                                 <label htmlFor="first-name" className="mb-2 text-gray-300">
                                     First Name
@@ -27,12 +39,14 @@ const Checkout = () => {
                                 <input
                                     type="text"
                                     id="first-name"
-                                    name="first-name"
+                                    name="firstName"
+                                    value={formData.firstName}
+                                    onChange={handleInputChange}
                                     placeholder="Enter your first name"
                                     className=" border border-gray-200 text-gray-300 rounded-lg px-4 py-4 outline-none bg-inherit"
                                 />
                             </div>
-                            {/* Last Name */}
+                            {/* --------------  Last Name ------------- */}
                             <div className="flex flex-col">
                                 <label htmlFor="last-name" className="mb-2 text-gray-300">
                                     Last Name
@@ -40,12 +54,14 @@ const Checkout = () => {
                                 <input
                                     type="text"
                                     id="last-name"
-                                    name="last-name"
+                                    name="lastName"
+                                    value={formData.lastName}
+                                    onChange={handleInputChange}
                                     placeholder="Enter your last name"
                                     className=" border border-gray-200 text-gray-300 rounded-lg px-4 py-4 outline-none bg-inherit"
                                 />
                             </div>
-                            {/* Email */}
+                            {/* ---------- Email --------- */}
                             <div className="flex flex-col sm:col-span-2">
                                 <label htmlFor="email" className="mb-2 text-gray-300">
                                     Email
@@ -54,11 +70,13 @@ const Checkout = () => {
                                     type="email"
                                     id="email"
                                     name="email"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
                                     placeholder="Enter your email"
                                     className=" border border-gray-200 text-gray-300 rounded-lg px-4 py-4 outline-none bg-inherit"
                                 />
                             </div>
-                            {/* Street Address */}
+                            {/* ----------- Street Address ---------------- */}
                             <div className="flex flex-col sm:col-span-2">
                                 <label htmlFor="street" className="mb-2 text-gray-300">
                                     Street Address
@@ -67,11 +85,13 @@ const Checkout = () => {
                                     type="text"
                                     id="street"
                                     name="street"
+                                    value={formData.street}
+                                    onChange={handleInputChange}
                                     placeholder="Enter your street address"
                                     className=" border border-gray-200 text-gray-300 rounded-lg px-4 py-4 outline-none bg-inherit"
                                 />
                             </div>
-                            {/* Phone */}
+                            {/* -------------- Phone ----------- */}
                             <div className="flex flex-col sm:col-span-2">
                                 <label htmlFor="phone" className="mb-2 text-gray-300">
                                     Phone Number
@@ -80,6 +100,8 @@ const Checkout = () => {
                                     type="text"
                                     id="phone"
                                     name="phone"
+                                    value={formData.phone}
+                                    onChange={handleInputChange}
                                     placeholder="Enter your phone number"
                                     className=" border border-gray-200 text-gray-300 rounded-lg px-4 py-4 outline-none bg-inherit"
                                 />
@@ -87,7 +109,7 @@ const Checkout = () => {
                         </div>
                     </div>
 
-                    {/* Right: Cart Total */}
+                    {/* ----------- Cart Total -------------- */}
                     <div className=" p-8 rounded-lg shadow-lg">
                         <h2 className="text-2xl font-bold mb-6">Cart Summary</h2>
                         <div className="divide-y divide-gray-700">
@@ -109,7 +131,6 @@ const Checkout = () => {
                                             </p>
                                         </div>
                                     </div>
-
                                 </div>
                             ))}
                         </div>
@@ -120,7 +141,6 @@ const Checkout = () => {
                                         <h3 className="text-xl font-bold">
                                             Grand Total: ${calculateTotal()}
                                         </h3>
-                                        {/* Proceed to Payment Button */}
                                         <div className="lg:col-span-3 text-center mt-8">
                                             <button className="w-full bg-card-color-one hover:opacity-90 text-white px-6 py-3 rounded-lg font-semibold">
                                                 Proceed to Payment
@@ -135,8 +155,6 @@ const Checkout = () => {
                                 )
                         }
                     </div>
-
-
                 </form>
             </div>
         </div>
